@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="LibraryTree.LibraryTree, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">Library Tree Web Part</property>
+        <property name="Description" type="string">A web part which allows users to view a Document Library in a tree view.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>

@@ -1,0 +1,12 @@
+﻿<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="ef970604-2a7e-44f7-acb9-a497299f3984" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="LibraryTree.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="LibraryTree, Version=1.0.0.0, Culture=neutral, PublicKeyToken=eec1ab322b499d45" Namespace="LibraryTree" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="LibraryTree_LibraryTreeWebPart\Feature.xml" />
+  </FeatureManifests>
+</Solution>

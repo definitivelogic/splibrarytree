@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ef970604-2a7e-44f7-acb9-a497299f3984" solutionId="ef970604-2a7e-44f7-acb9-a497299f3984" resetWebServer="false" sharePointProductVersion="15.0" name="LibraryTree" isDesignerEnabled="false" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="f7d2e49f-1443-43ef-92e7-c84a7258306f" />
+  </features>
+</package>
