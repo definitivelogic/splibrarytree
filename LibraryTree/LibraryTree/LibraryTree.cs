@@ -20,24 +20,18 @@ namespace LibraryTree
 
         protected string _LibraryName = "";
         [Personalizable(PersonalizationScope.Shared),
-        Browsable(false),
-        Category("Document Library Selection")]
+            Browsable(false),
+            Category("Tree View Settings")]
         public string LibraryName
         {
-            get
-            {
-                return _LibraryName;
-            }
-            set
-            {
-                _LibraryName = value;
-            }
+            get { return _LibraryName; }
+            set { _LibraryName = value; }
         }
 
         protected int _ExpandDepth = 0;
         [Personalizable(PersonalizationScope.Shared),
             Browsable(false),
-            Category("Document Library Selection")]
+            Category("Tree View Settings")]
         public int ExpandDepth
         {
             get { return _ExpandDepth; }
@@ -47,13 +41,12 @@ namespace LibraryTree
         protected bool _ShowLines = false;
         [Personalizable(PersonalizationScope.Shared),
             Browsable(false),
-            Category("Document Library Selection")]
+            Category("Tree View Settings")]
         public bool ShowLines
         {
             get { return _ShowLines; }
             set { _ShowLines = value; }
         }
-
 
         public override EditorPartCollection CreateEditorParts()
         {
@@ -69,48 +62,15 @@ namespace LibraryTree
             base.CreateChildControls();
             SPWeb wb = SPContext.Current.Web;
             string baseURL = wb.Url.ToString();
-            string correctedLibraryName;
             try
             {
                 if (_LibraryName == "")
                 {
-                    throw new Exception("No Document Library selected. Please select one from web part properties pane.");
+                    throw new Exception("No Document Library selected. Please select one in the web part properties pane.");
                 }
 
-                //check if the library name was selected from picker or entered manually
-                if (_LibraryName.Substring(0, 1) == "/")
-                {
-                    correctedLibraryName = _LibraryName.Substring(1);
-                }
-                else
-                {
-                    correctedLibraryName = _LibraryName;
-                }
+                SPDocumentLibrary doclib = (SPDocumentLibrary)wb.Lists[_LibraryName];
 
-                SPDocumentLibrary doclib = (SPDocumentLibrary)wb.Lists[correctedLibraryName];
-
-                // A table for layout 
-                Table tbl;
-                TableRow row;
-                TableCell cell;
-                tbl = new Table();
-                row = new TableRow();
-                cell = new TableCell();
-
-                // first row for title
-                cell.VerticalAlign = VerticalAlign.Middle;
-                cell.HorizontalAlign = HorizontalAlign.Left;
-                Label lblTitle = new Label();
-                lblTitle.Text = "Tree View of <strong>" + doclib.Title + "</strong>:";
-                cell.Controls.Add(lblTitle);
-                row.Controls.Add(cell);
-                tbl.Controls.Add(row);
-
-                //second row for treeview
-                row = new TableRow();
-                cell = new TableCell();
-                cell.VerticalAlign = VerticalAlign.Middle;
-                cell.HorizontalAlign = HorizontalAlign.Left;
                 SPTreeView TreeView1 = new SPTreeView();
                 SPFolder root = doclib.RootFolder;
                 TreeNode node = new TreeNode();
@@ -122,15 +82,10 @@ namespace LibraryTree
                 node.ToolTip = "Size: " + size.ToString() + " KBs " + " Files: " + numFiles.ToString();
                 node.ImageUrl = baseURL + "/_layouts/15/images/folder.gif";
                 TreeView1.Nodes.Add(node);
-                TreeView1.ShowLines = _ShowLines;
                 TreeView1.EnableViewState = false;
+                TreeView1.ShowLines = _ShowLines;                
                 TreeView1.ExpandDepth = _ExpandDepth;
-                cell.Controls.Add(TreeView1);
-                row.Controls.Add(cell);
-                tbl.Controls.Add(row);
-
-                //add table to webpart
-                this.Controls.Add(tbl);
+                this.Controls.Add(TreeView1);
             }
             catch (Exception ex)
             {
