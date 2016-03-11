@@ -16,7 +16,7 @@ The project packages to a Farm Solution with a Site scoped feature that deploys 
 
 **Initial expansion depth:** Specify the level the tree view should be initially expanded to.
 
-**Show lines:** Choose wether or not to show lines connecting the leaves.
+**Show lines:** Choose whether or not to show lines connecting the leaves.
 
 
 ### Differences from the original
